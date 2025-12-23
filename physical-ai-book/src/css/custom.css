@@ -1,0 +1,172 @@
+/**
+ * Physical AI Book - Custom Styles
+ * Brand colors, code blocks, lesson cards, hardware tables, mobile responsiveness
+ */
+
+:root {
+  /* Primary brand color */
+  --ifm-color-primary: #2e8555;
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
+
+  /* Code and content */
+  --ifm-code-font-size: 95%;
+  --ifm-font-size-base: 16px;
+  --ifm-line-height-base: 1.65;
+
+  /* Spacing */
+  --ifm-spacing-horizontal: 1rem;
+  --ifm-spacing-vertical: 1rem;
+
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode overrides */
+[data-theme='dark'] {
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* High contrast for accessibility */
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Code block title styling */
+div[class^='codeBlockTitle'] {
+  background-color: var(--ifm-color-primary);
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+/* Consistent callout box styling */
+.admonition {
+  margin-bottom: 1.5rem;
+  border-left-width: 4px;
+}
+
+/* Lesson card styling */
+.lesson-card {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.lesson-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.lesson-card h3 {
+  margin-top: 0;
+  color: var(--ifm-color-primary);
+}
+
+.lesson-meta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+/* Hardware list table */
+.hardware-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.hardware-table th {
+  background-color: var(--ifm-color-emphasis-100);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.hardware-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+/* Code download button */
+.code-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--ifm-color-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.code-download-btn:hover {
+  background-color: var(--ifm-color-primary-dark);
+  color: white;
+  text-decoration: none;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .lesson-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .hardware-table {
+    font-size: 0.875rem;
+  }
+
+  .lesson-card {
+    padding: 1rem;
+  }
+}
+
+/* Improved readability for long-form content */
+.markdown > p {
+  margin-bottom: 1.25rem;
+}
+
+/* Better spacing for lists */
+.markdown ul,
+.markdown ol {
+  margin-bottom: 1.25rem;
+}
+
+.markdown li {
+  margin-bottom: 0.5rem;
+}
+
+/* Footer module links green by default */
+.footer-module-link a {
+  color: #00ff00;   /* green */
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+/* Hover effect: white bold */
+.footer-module-link a:hover {
+  color: #ffffff;  /* white */
+  font-weight: bold;
+}

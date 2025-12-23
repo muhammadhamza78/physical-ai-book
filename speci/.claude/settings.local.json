@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "SlashCommand(/sp.specify Purpose: Define the overall structure and generation workflow for a robotics course. Course Structure Rules (IMPORTANT): Use \"Module\" as the top-level unit (Module 1, Module 2, etc.). Do NOT use the word \"Lesson\" anywhere in the course. Inside each Module, use \"Chapter 1, Chapter 2, Chapter 3, etc.\" Each Module must end with a \"Module X Project\". Workflow Rules: Generate each Module using a separate /sp.specify prompt. Do NOT merge multiple modules into one /sp.specify. Maintain consistent terminology across all modules. Course Overview: Module 1: The Robotic Nervous System (ROS 2), Module 2: The Digital Twin (Gazebo & Unity), Future modules will follow the same structure. Audience: Beginner to intermediate robotics learners with basic Python knowledge. Tone: Professional, structured, and educational.)",
+      "Bash(powershell.exe:*)"
+    ]
+  }
+}
