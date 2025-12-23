@@ -259,7 +259,12 @@ Before moving to Chapter 2, test your knowledge:
    - <details><summary>Answer</summary>Isaac Sim (simulation), Isaac ROS (GPU perception), Nav2 (navigation)</details>
 
 2. **Why is GPU acceleration important for robotics?**
-   - <details><summary>Answer</summary>GPUs process sensor data 10x faster than CPUs, enabling real-time perception at 30+ Hz needed for dynamic robot movement.</details>
+   <details>
+   <summary>Answer</summary>
+   
+   GPUs process sensor data 10x faster than CPUs, enabling real-time perception at 30+ Hz needed for dynamic robot movement.
+   
+   </details>
 
 3. **Trace the data flow: A robot receives a navigation goal. What happens?**
    - <details><summary>Answer</summary>
