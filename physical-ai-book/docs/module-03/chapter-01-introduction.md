@@ -1,4 +1,4 @@
----
+﻿---
 sidebar_position: 1
 title: 'Chapter 1: Introduction to NVIDIA Isaac'
 description: 'Understanding the Isaac ecosystem and GPU acceleration in robotics'
@@ -8,7 +8,7 @@ description: 'Understanding the Isaac ecosystem and GPU acceleration in robotics
 
 ## Overview
 
-In this chapter, you'll learn about the NVIDIA Isaac ecosystem and understand how GPU acceleration revolutionizes robotics perception and navigation. We'll explore the three main components—Isaac Sim, Isaac ROS, and Nav2—and see how they work together to enable autonomous humanoid behavior.
+In this chapter, you'll learn about the NVIDIA Isaac ecosystem and understand how GPU acceleration revolutionizes robotics perception and navigation. We'll explore the three main componentsâ€”Isaac Sim, Isaac ROS, and Nav2â€”and see how they work together to enable autonomous humanoid behavior.
 
 **Learning Objectives:**
 - Identify the three main Isaac components and their roles
@@ -111,8 +111,8 @@ All of this must happen in **< 50 milliseconds** to react in real-time.
 - **High Memory Bandwidth**: 448 GB/s (RTX 3060) vs 50 GB/s (CPU RAM)
 
 **Real-World Impact:**
-- **CPU-only**: Robot updates position every 200ms → jerky, reactive navigation
-- **GPU-accelerated**: Robot updates position every 20ms → smooth, predictive navigation
+- **CPU-only**: Robot updates position every 200ms â†’ jerky, reactive navigation
+- **GPU-accelerated**: Robot updates position every 20ms â†’ smooth, predictive navigation
 
 ---
 
@@ -121,50 +121,50 @@ All of this must happen in **< 50 milliseconds** to react in real-time.
 Here's how the three components work together:
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                      Isaac Sim (Simulation)                 │
-│  ┌───────────────┐  ┌──────────────┐  ┌─────────────────┐  │
-│  │ Humanoid Robot│  │ Environment  │  │ Sensor Simulation│  │
-│  │   (URDF/USD)  │  │  (Scene)     │  │ (RGB-D, IMU)    │  │
-│  └───────┬───────┘  └──────┬───────┘  └────────┬────────┘  │
-│          │                  │                    │            │
-│          └──────────────────┴────────────────────┘            │
-│                             │                                 │
-│                    ROS 2 Topics (sensor data)                │
-└─────────────────────────────┬───────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                 Isaac ROS (GPU Perception)                  │
-│  ┌──────────────────┐         ┌─────────────────────────┐   │
-│  │  cuVSLAM Node    │ ◄─────  │  Camera + IMU Topics    │   │
-│  │  (GPU-powered)   │         └─────────────────────────┘   │
-│  └────────┬─────────┘                                        │
-│           │                                                   │
-│           ▼                                                   │
-│  ┌──────────────────┐                                        │
-│  │  Pose + Map      │  Publishes:                           │
-│  │  /odometry/filtered → Robot's current position           │
-│  │  /map            → Occupancy grid of environment         │
-│  └────────┬─────────┘                                        │
-└───────────┼──────────────────────────────────────────────────┘
-            │
-            ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    Nav2 (Navigation)                        │
-│  ┌──────────────────┐         ┌─────────────────────────┐   │
-│  │  Global Planner  │         │  /odometry/filtered     │   │
-│  │  (SMAC)          │ ◄─────  │  /map                   │   │
-│  └────────┬─────────┘         └─────────────────────────┘   │
-│           │                                                   │
-│           ▼                                                   │
-│  ┌──────────────────┐                                        │
-│  │  Local Controller│  Publishes:                           │
-│  │  (MPPI)          │  /cmd_vel → Velocity commands         │
-│  └────────┬─────────┘                                        │
-└───────────┼──────────────────────────────────────────────────┘
-            │
-            ▼
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                      Isaac Sim (Simulation)                 â”‚
+â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”‚
+â”‚  â”‚ Humanoid Robotâ”‚  â”‚ Environment  â”‚  â”‚ Sensor Simulationâ”‚  â”‚
+â”‚  â”‚   (URDF/USD)  â”‚  â”‚  (Scene)     â”‚  â”‚ (RGB-D, IMU)    â”‚  â”‚
+â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â”‚
+â”‚          â”‚                  â”‚                    â”‚            â”‚
+â”‚          â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜            â”‚
+â”‚                             â”‚                                 â”‚
+â”‚                    ROS 2 Topics (sensor data)                â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                              â”‚
+                              â–¼
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                 Isaac ROS (GPU Perception)                  â”‚
+â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”         â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”   â”‚
+â”‚  â”‚  cuVSLAM Node    â”‚ â—„â”€â”€â”€â”€â”€  â”‚  Camera + IMU Topics    â”‚   â”‚
+â”‚  â”‚  (GPU-powered)   â”‚         â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜   â”‚
+â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜                                        â”‚
+â”‚           â”‚                                                   â”‚
+â”‚           â–¼                                                   â”‚
+â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”                                        â”‚
+â”‚  â”‚  Pose + Map      â”‚  Publishes:                           â”‚
+â”‚  â”‚  /odometry/filtered â†’ Robot's current position           â”‚
+â”‚  â”‚  /map            â†’ Occupancy grid of environment         â”‚
+â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜                                        â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+            â”‚
+            â–¼
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                    Nav2 (Navigation)                        â”‚
+â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”         â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”   â”‚
+â”‚  â”‚  Global Planner  â”‚         â”‚  /odometry/filtered     â”‚   â”‚
+â”‚  â”‚  (SMAC)          â”‚ â—„â”€â”€â”€â”€â”€  â”‚  /map                   â”‚   â”‚
+â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜         â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜   â”‚
+â”‚           â”‚                                                   â”‚
+â”‚           â–¼                                                   â”‚
+â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”                                        â”‚
+â”‚  â”‚  Local Controllerâ”‚  Publishes:                           â”‚
+â”‚  â”‚  (MPPI)          â”‚  /cmd_vel â†’ Velocity commands         â”‚
+â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜                                        â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+            â”‚
+            â–¼
     Robot moves to goal autonomously!
 ```
 
@@ -215,8 +215,8 @@ Just like self-driving cars train in simulation before road testing, robots trai
 Humanoid robots face unique challenges:
 
 ### Challenge 1: Dynamic Movement
-- **Walking** creates motion blur and vibration → VSLAM must track at high FPS
-- **Balance** requires constant feedback → Low latency is critical
+- **Walking** creates motion blur and vibration â†’ VSLAM must track at high FPS
+- **Balance** requires constant feedback â†’ Low latency is critical
 
 **Isaac Solution:** GPU-accelerated VSLAM at 30-60 Hz provides smooth tracking.
 
@@ -238,14 +238,14 @@ Humanoid robots face unique challenges:
 
 By the end of this chapter, you should understand:
 
-✅ **Isaac Sim** = Virtual robot testing environment with photorealistic simulation
-✅ **Isaac ROS** = GPU-accelerated perception (VSLAM, depth, detection) running 10x faster than CPU
-✅ **Nav2** = Autonomous navigation with path planning and obstacle avoidance
+âœ… **Isaac Sim** = Virtual robot testing environment with photorealistic simulation
+âœ… **Isaac ROS** = GPU-accelerated perception (VSLAM, depth, detection) running 10x faster than CPU
+âœ… **Nav2** = Autonomous navigation with path planning and obstacle avoidance
 
-✅ **GPU acceleration** is essential for real-time robotics (< 50ms latency requirement)
-✅ **Data flows** from Isaac Sim (sensors) → Isaac ROS (perception) → Nav2 (navigation) → back to Isaac Sim (movement)
+âœ… **GPU acceleration** is essential for real-time robotics (< 50ms latency requirement)
+âœ… **Data flows** from Isaac Sim (sensors) â†’ Isaac ROS (perception) â†’ Nav2 (navigation) â†’ back to Isaac Sim (movement)
 
-✅ **Humanoid robots** benefit from Isaac's speed and accuracy for dynamic movement and complex environments
+âœ… **Humanoid robots** benefit from Isaac's speed and accuracy for dynamic movement and complex environments
 
 ---
 
@@ -256,26 +256,39 @@ Before moving to Chapter 2, test your knowledge:
 ### Quiz Questions
 
 1. **What are the three main components of the NVIDIA Isaac ecosystem?**
-   - <details><summary>Answer</summary>Isaac Sim (simulation), Isaac ROS (GPU perception), Nav2 (navigation)</details>
+   - **Answer**
+     
+     Isaac Sim (simulation), Isaac ROS (GPU perception), Nav2 (navigation)
 
 2. **Why is GPU acceleration important for robotics?**
-   - <details><summary>Answer</summary>GPUs process sensor data 10x faster than CPUs, enabling real-time perception at 30+ Hz needed for dynamic robot movement.</details>
-
+   <details>
+   <summary>Answer</summary>
+   
+   GPUs process sensor data 10x faster than CPUs, enabling real-time perception at 30+ Hz needed for dynamic robot movement.
+   
+   </details>
 3. **Trace the data flow: A robot receives a navigation goal. What happens?**
-   - <details><summary>Answer</summary>
+   - **Answer**
+     
+     
      1. Nav2 plans path using map
      2. Nav2 publishes velocity commands (/cmd_vel)
      3. Isaac Sim moves robot
      4. Isaac Sim publishes sensor data (camera, IMU)
      5. Isaac ROS processes sensors and updates pose
      6. Cycle repeats until goal reached
-     </details>
+
+
 
 4. **What does cuVSLAM stand for and what does it do?**
-   - <details><summary>Answer</summary>CUDA Visual SLAM - GPU-accelerated algorithm that tracks robot position and builds a map using camera and IMU data.</details>
+   - **Answer**
+     
+     CUDA Visual SLAM - GPU-accelerated algorithm that tracks robot position and builds a map using camera and IMU data.
 
 5. **How is Isaac Sim different from Gazebo?**
-   - <details><summary>Answer</summary>Isaac Sim provides photorealistic rendering (for realistic vision), GPU-accelerated physics, built-in synthetic data generation, and tighter integration with NVIDIA's perception stack.</details>
+   - **Answer**
+     
+     Isaac Sim provides photorealistic rendering (for realistic vision), GPU-accelerated physics, built-in synthetic data generation, and tighter integration with NVIDIA's perception stack.
 
 ### Concept Check
 
@@ -295,20 +308,22 @@ Now that you understand the big picture, let's get hands-on! In **Chapter 2**, y
 - Generate synthetic datasets with 1000+ labeled images
 - Learn domain randomization techniques
 
-Ready to create photorealistic robot worlds? Let's go! 🚀
+Ready to create photorealistic robot worlds? Let's go! ðŸš€
 
 ---
 
 ## Additional Resources
 
-- 📘 [NVIDIA Isaac Sim Documentation](https://docs.omniverse.nvidia.com/isaacsim/latest/)
-- 📘 [Isaac ROS Documentation](https://nvidia-isaac-ros.github.io/)
-- 📘 [Nav2 Documentation](https://navigation.ros.org/)
-- 🎥 [NVIDIA Isaac Platform Overview (Video)](https://www.nvidia.com/en-us/isaac/)
-- 📝 [GPU vs CPU for Robotics (Blog Post)](https://developer.nvidia.com/blog/)
+- ðŸ“˜ [NVIDIA Isaac Sim Documentation](https://docs.omniverse.nvidia.com/isaacsim/latest/)
+- ðŸ“˜ [Isaac ROS Documentation](https://nvidia-isaac-ros.github.io/)
+- ðŸ“˜ [Nav2 Documentation](https://navigation.ros.org/)
+- ðŸŽ¥ [NVIDIA Isaac Platform Overview (Video)](https://www.nvidia.com/en-us/isaac/)
+- ðŸ“ [GPU vs CPU for Robotics (Blog Post)](https://developer.nvidia.com/blog/)
 
 ---
 
 :::tip Pro Tip
-As you proceed through the module, keep this architecture diagram in mind. Every chapter builds on the data flow: Simulation → Perception → Navigation.
+As you proceed through the module, keep this architecture diagram in mind. Every chapter builds on the data flow: Simulation â†’ Perception â†’ Navigation.
 :::
+
+
