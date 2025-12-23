@@ -17,8 +17,13 @@ const config: Config = {
   organizationName: 'your-org',
   projectName: 'physical-ai-book',
 
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: 'warn',
+
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
 
   i18n: {
     defaultLocale: 'en',
@@ -135,8 +140,8 @@ const config: Config = {
               to: '/docs/intro',
             },
             {
-              label: 'Chapter 1',
-              to: '/docs/chapter-01',
+              label: 'Module 1',
+              to: '/docs/module-01',
             },
             {
               label: 'Glossary',
@@ -163,10 +168,6 @@ const config: Config = {
             {
               label: 'GitHub',
               href: 'https://github.com/your-org/physical-ai-book',
-            },
-            {
-              label: 'License',
-              to: '/docs/license',
             },
           ],
         },

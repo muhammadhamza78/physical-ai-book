@@ -62,7 +62,7 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       link: {
         type: 'doc',
-        id: 'module-04/intro',
+        id: 'module-04/index',
       },
       items: [
         'module-04/chapter-01-introduction',
