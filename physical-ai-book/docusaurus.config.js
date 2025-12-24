@@ -1,7 +1,7 @@
 module.exports = {
   title: 'Physical AI Book',
   tagline: 'Learn Physical AI step by step',
-  url: 'https://your-site-url.com',
+  url: 'https://ai-physical-book-delta.vercel.app/',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'muhammadhamza78',
